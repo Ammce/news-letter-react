@@ -23,26 +23,4 @@ describe('App', () => {
     const navigation = appWrapper.find(Navigation);
     expect(navigation).toBeTruthy();
   });
-
-  // it('Renders a person list', () => {
-  //   // Finding another component
-  //   const personList = appWrapper.find(PersonList);
-  //   expect(personList).toHaveLength(1);
-  // });
-
-  // it('Should has state', () => {
-  //   // For functional component it is different approach unlike class-based components
-  //   const appState = appWrapper.state();
-  //   expect(appState).not.toBeNull();
-  // });
-
-  // it('It should have persons property defined', () => {
-  //   const appState = appWrapper.state();
-  //   expect(appState.persons).toBeDefined();
-  // });
-
-  // it('Passes persons property of state to personList as prop', () => {
-  //   const personList = appWrapper.find(PersonList);
-  //   expect(personList.props().persons).toEqual(appWrapper.state().persons);
-  // });
 });
