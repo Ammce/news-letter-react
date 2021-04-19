@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { useDispatch } from 'react-redux';
@@ -12,13 +13,12 @@ export interface IGiveConsentProps {}
 
 const GiveConsent: React.FC<IGiveConsentProps> = () => {
   const [data, setData] = useState({
+    id: uuidv4(),
     name: '',
     email: '',
-    checks: {
-      recieveNewsLeters: false,
-      showTargetedAds: false,
-      visitStatistics: false,
-    },
+    recieveNewsLeters: false,
+    showTargetedAds: false,
+    visitStatistics: false,
   });
 
   const dispatch = useDispatch();
@@ -36,10 +36,7 @@ const GiveConsent: React.FC<IGiveConsentProps> = () => {
     e.persist();
     setData({
       ...data,
-      checks: {
-        ...data.checks,
-        [e.target.name]: e.target.checked,
-      },
+      [e.target.name]: e.target.checked,
     });
   };
 
@@ -47,7 +44,13 @@ const GiveConsent: React.FC<IGiveConsentProps> = () => {
     dispatch(giveConsent(data));
   };
 
-  const { name, email, checks } = data;
+  const {
+    name,
+    email,
+    recieveNewsLeters,
+    showTargetedAds,
+    visitStatistics,
+  } = data;
   return (
     <div className='give-contest'>
       <form className='form-give-consent' noValidate autoComplete='off'>
@@ -77,7 +80,7 @@ const GiveConsent: React.FC<IGiveConsentProps> = () => {
         </div>
         <div className='checkbox-wrapper'>
           <Checkbox
-            checked={checks.recieveNewsLeters}
+            checked={recieveNewsLeters}
             name='recieveNewsLeters'
             label='Recieve newsletter'
             onChange={(e) => {
@@ -86,7 +89,7 @@ const GiveConsent: React.FC<IGiveConsentProps> = () => {
             className='checkbox'
           />
           <Checkbox
-            checked={checks.showTargetedAds}
+            checked={showTargetedAds}
             name='showTargetedAds'
             label='Be shown targeted ads'
             onChange={(e) => {
@@ -95,7 +98,7 @@ const GiveConsent: React.FC<IGiveConsentProps> = () => {
             className='checkbox'
           />
           <Checkbox
-            checked={checks.visitStatistics}
+            checked={visitStatistics}
             name='visitStatistics'
             label='Contribute to anonymous visit statistics'
             onChange={(e) => {
@@ -105,11 +108,7 @@ const GiveConsent: React.FC<IGiveConsentProps> = () => {
           />
         </div>
         <Button
-          disabled={
-            !checks.recieveNewsLeters &&
-            !checks.showTargetedAds &&
-            !checks.visitStatistics
-          }
+          disabled={!recieveNewsLeters && !showTargetedAds && !visitStatistics}
           label='Give Consent'
           onClick={onSubmit}
         />

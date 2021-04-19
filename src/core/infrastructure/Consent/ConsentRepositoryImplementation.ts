@@ -8,4 +8,8 @@ export class ConsentRepositoryImplementation implements ConsentRepository {
     const res = await axios.get(`${this.baseUrl}/consents`);
     return res;
   }
+  async giveConsent(data: Consent): Promise<Consent> {
+    const res = await axios.post(`${this.baseUrl}/consents`, data);
+    return res;
+  }
 }

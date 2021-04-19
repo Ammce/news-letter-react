@@ -24,10 +24,14 @@ const columns = [
 
 const CollectedConsents: React.FC<ICollectedConsentsProps> = () => {
   const dispatch = useDispatch();
-  const consents = useSelector((state: AppState) => state.consents.consents);
+  const { consents, hasFetched } = useSelector(
+    (state: AppState) => state.consents,
+  );
 
   useEffect(() => {
-    dispatch(getConsents);
+    if (!hasFetched) {
+      dispatch(getConsents);
+    }
   }, []);
   return (
     <div>

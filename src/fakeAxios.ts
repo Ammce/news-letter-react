@@ -6,17 +6,17 @@ class Axios {
           id: '1',
           name: 'Amel',
           email: 'amcenp@gmail.com',
-          recieveNewsLeters: 'Yes',
-          showTargetedAds: 'Yes',
-          visitStatistics: 'Yes',
+          recieveNewsLeters: true,
+          showTargetedAds: true,
+          visitStatistics: true,
         },
         {
           id: '2',
           name: 'Mark',
           email: 'mark@gmail.com',
-          recieveNewsLeters: 'No',
-          showTargetedAds: 'Yes',
-          visitStatistics: 'No',
+          recieveNewsLeters: false,
+          showTargetedAds: true,
+          visitStatistics: false,
         },
       ]);
     });

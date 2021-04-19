@@ -1,7 +1,10 @@
 import { Dispatch } from 'redux';
 import { GIVE_CONSENT, COLLECT_CONSENTS } from './Consents.types';
 import { ConsentRepositoryImplementation } from '../../../../core/infrastructure/Consent/ConsentRepositoryImplementation';
-import { GetConsents } from '../../../../core/infrastructure/Consent/use-cases/GetConsents';
+import {
+  GetConsents,
+  GiveConsent,
+} from '../../../../core/infrastructure/Consent/use-cases/';
 import { Consent } from '../../../../core/entities/Consents/Consent';
 
 export const getConsents = async (dispatch: Dispatch) => {
@@ -11,18 +14,17 @@ export const getConsents = async (dispatch: Dispatch) => {
     const consents = await getConsentsUseCase.getConsents();
     dispatch({ type: COLLECT_CONSENTS, payload: consents });
   } catch (error) {
-    //   dispatch({ type: LIST_LOAD_FAILURE, error });
+    //   dispatch({ type: ERROR });
   }
 };
 
 export const giveConsent = (data: Consent) => async (dispatch: Dispatch) => {
   try {
-    console.log(data);
-    // const consentRepositoryImplementation = new ConsentRepositoryImplementation();
-    // const getConsentsUseCase = new GetConsents(consentRepositoryImplementation);
-    // const consents = await getConsentsUseCase.getConsents();
-    // dispatch({ type: COLLECT_CONSENTS, payload: consents });
+    const consentRepositoryImplementation = new ConsentRepositoryImplementation();
+    const giveConsentUseCase = new GiveConsent(consentRepositoryImplementation);
+    const consent = await giveConsentUseCase.giveConsent(data);
+    dispatch({ type: GIVE_CONSENT, payload: consent });
   } catch (error) {
-    //   dispatch({ type: LIST_LOAD_FAILURE, error });
+    //   dispatch({ type: ERROR });
   }
 };
