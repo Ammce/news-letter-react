@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { shallow, ShallowWrapper } from 'enzyme';
 
 import App, { IAppProps, IAppState } from './App';
-import PersonList from './app/modules/PersonList/PersonList';
+import { Navigation } from './app/common/';
 
 describe('App', () => {
   let appWrapper: ShallowWrapper<
@@ -15,29 +15,34 @@ describe('App', () => {
     appWrapper = shallow<IAppProps, IAppState>(<App />);
   });
 
-  it('renders without crashing', () => {
+  it('Should render without crashing', () => {
     // Do not load all childs(Child components) of APP Component. All we care at this point is App Component itself
   });
 
-  it('Renders a person list', () => {
-    // Finding another component
-    const personList = appWrapper.find(PersonList);
-    expect(personList).toHaveLength(1);
+  it('Should render navigation in APP.jsx', () => {
+    const navigation = appWrapper.find(Navigation);
+    expect(navigation).toBeTruthy();
   });
 
-  it('Should has state', () => {
-    // For functional component it is different approach unlike class-based components
-    const appState = appWrapper.state();
-    expect(appState).not.toBeNull();
-  });
+  // it('Renders a person list', () => {
+  //   // Finding another component
+  //   const personList = appWrapper.find(PersonList);
+  //   expect(personList).toHaveLength(1);
+  // });
 
-  it('It should have persons property defined', () => {
-    const appState = appWrapper.state();
-    expect(appState.persons).toBeDefined();
-  });
+  // it('Should has state', () => {
+  //   // For functional component it is different approach unlike class-based components
+  //   const appState = appWrapper.state();
+  //   expect(appState).not.toBeNull();
+  // });
 
-  it('Passes persons property of state to personList as prop', () => {
-    const personList = appWrapper.find(PersonList);
-    expect(personList.props().persons).toEqual(appWrapper.state().persons);
-  });
+  // it('It should have persons property defined', () => {
+  //   const appState = appWrapper.state();
+  //   expect(appState.persons).toBeDefined();
+  // });
+
+  // it('Passes persons property of state to personList as prop', () => {
+  //   const personList = appWrapper.find(PersonList);
+  //   expect(personList.props().persons).toEqual(appWrapper.state().persons);
+  // });
 });
