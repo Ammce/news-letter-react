@@ -4,9 +4,11 @@ This project is trying to implement Clean architecture alongisde with TDD and Re
 
 For more information about project, contact [Amel Muminovic](https://amelmuminovic.com)
 
-## Available Scripts
+## Steps to run the project
 
-In the project directory, you can run:
+### `npm install`
+
+This script will install all needed dependencies. It is using eslint.
 
 ### `npm start`
 
