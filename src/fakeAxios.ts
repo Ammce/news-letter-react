@@ -1,6 +1,6 @@
 class Axios {
   get(url: string): Promise<any> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       resolve([
         {
           id: '1',
@@ -22,7 +22,7 @@ class Axios {
     });
   }
   post(url: string, data: any): Promise<any> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       resolve(data);
     });
   }
