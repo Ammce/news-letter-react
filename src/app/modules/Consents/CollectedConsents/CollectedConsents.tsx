@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector, DefaultRootState } from 'react-redux';
+
+import { getConsents } from '../redux/Consents.actions';
 import { Datagrid } from '../../../common';
+
+import { AppState } from '../../../store';
 
 export interface ICollectedConsentsProps {}
 
@@ -17,21 +22,16 @@ const columns = [
   },
 ];
 
-const rows = [
-  {
-    id: '1',
-    name: 'Amel',
-    email: 'amcenp@gmail.com',
-    recieveNewsLeters: 'Yes',
-    showTargetedAds: 'Yes',
-    visitStatistics: 'Yes',
-  },
-];
-
 const CollectedConsents: React.FC<ICollectedConsentsProps> = () => {
+  const dispatch = useDispatch();
+  const consents = useSelector((state: AppState) => state.consents.consents);
+
+  useEffect(() => {
+    dispatch(getConsents);
+  }, []);
   return (
     <div>
-      <Datagrid rows={rows} columns={columns} />
+      <Datagrid rows={consents} columns={columns} />
     </div>
   );
 };

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { giveConsent } from '../redux/Consents.actions';
 
 import './GiveConsent.scss';
 
@@ -20,9 +21,7 @@ const GiveConsent: React.FC<IGiveConsentProps> = () => {
     },
   });
 
-  const state = useSelector((state) => state);
   const dispatch = useDispatch();
-  console.log(state);
 
   const handleChangeEmailOrName = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -45,7 +44,7 @@ const GiveConsent: React.FC<IGiveConsentProps> = () => {
   };
 
   const onSubmit = () => {
-    console.log('Submitting the data', data);
+    dispatch(giveConsent(data));
   };
 
   const { name, email, checks } = data;

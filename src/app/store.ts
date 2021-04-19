@@ -7,12 +7,16 @@ import ConsentsReducer from './modules/Consents/redux/Consents.reducer';
 const middleware = [thunk];
 const initialState = {};
 
+const rootReducer = combineReducers({
+  consents: ConsentsReducer,
+});
+
 const store = createStore(
-  combineReducers({
-    consents: ConsentsReducer,
-  }),
+  rootReducer,
   initialState,
   composeWithDevTools(applyMiddleware(...middleware)),
 );
+
+export type AppState = ReturnType<typeof rootReducer>;
 
 export default store;

@@ -7,10 +7,10 @@ const initialState = {
 
 function consents(state = initialState, action: any = null) {
   switch (action.type) {
-    case GIVE_CONSENT:
+    case COLLECT_CONSENTS:
       return {
         ...state,
-        loading: true,
+        consents: action.payload,
       };
 
     default:
