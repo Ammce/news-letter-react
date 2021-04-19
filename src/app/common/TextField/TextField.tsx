@@ -9,6 +9,7 @@ export interface ITextFieldProps {
   value: string;
   name: string;
   type?: string;
+  className?: string;
 }
 
 const TextField: React.FC<ITextFieldProps> = ({
@@ -18,6 +19,7 @@ const TextField: React.FC<ITextFieldProps> = ({
   id,
   name,
   type,
+  className,
 }) => {
   return (
     <TextFieldMaterialUI
@@ -27,6 +29,7 @@ const TextField: React.FC<ITextFieldProps> = ({
       label={label}
       id={id}
       type={type}
+      className={className}
     />
   );
 };
@@ -38,10 +41,12 @@ TextField.propTypes = {
   onChange: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
+  className: PropTypes.string,
 };
 
 TextField.defaultProps = {
   type: 'string',
+  className: '',
 };
 
 export default TextField;

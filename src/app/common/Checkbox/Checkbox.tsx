@@ -9,6 +9,7 @@ export interface ICheckboxProps {
   label: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   name: string;
+  className?: string;
   color?: CheckboxColors;
 }
 
@@ -18,6 +19,7 @@ const Checkbox: React.FC<ICheckboxProps> = ({
   checked,
   label,
   color = 'primary',
+  className = '',
 }) => {
   return (
     <FormControlLabel
@@ -27,6 +29,7 @@ const Checkbox: React.FC<ICheckboxProps> = ({
           onChange={onChange}
           name={name}
           color={color}
+          className={className}
         />
       }
       label={label}
@@ -37,6 +40,7 @@ const Checkbox: React.FC<ICheckboxProps> = ({
 Checkbox.propTypes = {
   checked: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
+  className: PropTypes.string,
   color: PropTypes.oneOf<CheckboxColors>(['primary', 'secondary', 'default']),
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -44,6 +48,7 @@ Checkbox.propTypes = {
 
 Checkbox.defaultProps = {
   color: 'primary',
+  className: '',
 };
 
 export default Checkbox;
