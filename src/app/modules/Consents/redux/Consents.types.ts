@@ -1,0 +1,2 @@
+export const GIVE_CONSENT = 'GIVE_CONSENT';
+export const COLLECT_CONSENTS = 'COLLECT_CONSENTS';
