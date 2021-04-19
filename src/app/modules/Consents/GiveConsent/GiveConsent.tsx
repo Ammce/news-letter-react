@@ -23,7 +23,6 @@ const GiveConsent: React.FC<IGiveConsentProps> = () => {
     e: React.ChangeEvent<HTMLInputElement>,
   ): void => {
     e.persist();
-    console.log(e.target.name);
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
