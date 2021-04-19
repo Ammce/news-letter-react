@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { giveConsent } from '../redux/Consents.actions';
 
 import './GiveConsent.scss';
@@ -22,6 +23,7 @@ const GiveConsent: React.FC<IGiveConsentProps> = () => {
   });
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleChangeEmailOrName = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -40,8 +42,9 @@ const GiveConsent: React.FC<IGiveConsentProps> = () => {
     });
   };
 
-  const onSubmit = () => {
-    dispatch(giveConsent(data));
+  const onSubmit = async () => {
+    await dispatch(giveConsent(data));
+    history.push('/collected-consents');
   };
 
   const {
