@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { shallow, ShallowWrapper } from 'enzyme';
 
 import App, { IAppProps, IAppState } from './App';
-import PersonList from './modules/PersonList/PersonList';
+import PersonList from './app/modules/PersonList/PersonList';
 
 describe('App', () => {
   let appWrapper: ShallowWrapper<
